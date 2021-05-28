@@ -235,7 +235,7 @@ module.exports = () => {
     router.get("/Stat/Sex", (req, res) => {
         Student.aggregate([{$match: {"curp" : /^.{10}[H]./}},{$group:{_id : "$carrer",count: { $sum: 1 },}}])
             .then((hombre) => {
-                Student.aggregate([{$match: {"curp" : /^.{10}[F].*/}},{$group:{_id : "$carrer",count: { $sum: 1 },}}])
+                Student.aggregate([{$match: {"curp" : /^.{10}[M].*/}},{$group:{_id : "$carrer",count: { $sum: 1 },}}])
                 .then((mujer) => {
                     res.json({
                     code: status.OK,
