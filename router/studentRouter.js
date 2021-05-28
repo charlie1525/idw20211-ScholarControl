@@ -200,9 +200,9 @@ module.exports = () => {
     });
 
     router.get("/Stat/Foraneos", (req, res) => {
-        Student.aggregate([{$match: {"curp" : /^.{11}[nt|NT]./}},{$group:{_id : "$carrer",count: { $sum: 1 },}}])
+        Student.aggregate([{$match: {"curp" : /^. ./}},{$group:{_id : "$carrer",count: { $sum: 1 },}}])
             .then((local) => {
-                Student.aggregate([{$match:{"curp" : /^.{11}(?!([nt|NT])).*/}},{$group:{_id : "$carrer",count: { $sum: 1 },}}])
+                Student.aggregate([{$match:{"curp" : /^.{11}(?!(nt|NT)).*/}},{$group:{_id : "$carrer",count: { $sum: 1 },}}])
                     .then((foraneo) => {
                         res.json({
                             code: status.OK,
